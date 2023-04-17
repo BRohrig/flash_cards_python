@@ -10,10 +10,11 @@ card_2 = Card('The Viking spacecraft sent back to Earth photographs and reports 
 card_3 = Card('Describe in words the exact direction that is 697.5° clockwise from due north?','North north west', "STEM")
 cards = [card_1, card_2, card_3]
 deck = Deck(cards)
+print(deck.count)
 
-class TestDeck(unittest.Testcase):
+class TestDeck(unittest.TestCase):
   def test_count(self):
-    self.assertEqual(deck.count, 3)
+    self.assertEqual(deck.count(), 3)
 
   def test_category(self):
     self.assertEqual(deck.cards_in_category("STEM"), [card_2, card_3])
