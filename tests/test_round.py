@@ -19,22 +19,34 @@ class TestRound(unittest.TestCase):
     self.assertEqual(round.deck, deck)
 
   def test_card(self):
-    self.assertEqual(round.current_card, card_1)
+    self.assertEqual(round.current_card(), card_1)
 
   def test_round(self):
     self.assertEqual(round.turns, [])
 
+  def test_turn_correct(self):
+    cards = [card_1, card_2, card_3]
+    deck1 = Deck(cards)
+    round1 = Round(deck1)
+    self.assertEqual(round1.take_turn('Juneau').correct(), True)
+
+  def test_turn_false(self):
+    cards = [card_1, card_2, card_3]
+    deck2 = Deck(cards)
+    round2 = Round(deck2)
+    self.assertEqual(round2.take_turn('Seattle').correct(), False)
+
   def test_take_turn(self):
     self.assertEqual(round.take_turn('Juneau'), Turn('Juneau', card_1))
     self.assertEqual(round.turns, [Turn('Juneau', card_1)])
-    self.assertEqual(round.current_card, card_2)
+    self.assertEqual(round.current_card(), card_2)
 
-  def test_turn_correct(self):
-    self.assertEqual(round.take_turn('Juneau').correct, True)
-    self.assertEqual(round.take_turn('Seattle').correct, False)
-
-  def test_correct_number(self):
-    round.take_turn('Juneau')
-    self.assertEqual(round.number_correct, 1)
+  def test_number_correct(self):
+    cards = [card_1, card_2, card_3]
+    deck2 = Deck(cards)
+    round3 = Round(deck2)
+    round3.take_turn('Juneau')
+    # import ipdb; ipdb.set_trace()
+    self.assertEqual(round3.number_correct(), 1)
 
   
