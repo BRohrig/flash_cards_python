@@ -27,6 +27,7 @@ class TestRound(unittest.TestCase):
   def test_take_turn(self):
     self.assertEqual(round.take_turn('Juneau'), Turn('Juneau', card_1))
     self.assertEqual(round.turns, [Turn('Juneau', card_1)])
+    self.assertEqual(round.current_card, card_2)
 
   def test_turn_correct(self):
     self.assertEqual(round.take_turn('Juneau').correct, True)
