@@ -16,9 +16,9 @@ class TestTurn(unittest.TestCase):
     self.assertEqual(turn2.card, card)
 
   def test_correct(self):
-    self.assertEqual(turn.correct, True)
-    self.assertEqual(turn2.correct, False)
+    self.assertEqual(turn.correct(), True)
+    self.assertEqual(turn2.correct(), False)
 
   def test_feedback(self):
-    self.assertEqual(turn.feedback, 'Correct!')
-    self.assertEqual(turn2.feedback, "Incorrect.")
+    self.assertEqual(turn.feedback(), 'Correct!')
+    self.assertEqual(turn2.feedback(), "Incorrect.")
