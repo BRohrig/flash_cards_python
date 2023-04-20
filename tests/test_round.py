@@ -49,7 +49,7 @@ class TestRound(unittest.TestCase):
     # import ipdb; ipdb.set_trace()
     self.assertEqual(round3.number_correct(), 1)
 
-  def test_num_correct_cat(self):
+  def test_num_correct_cat_count(self):
     cards = [card_1, card_2, card_3]
     deck2 = Deck(cards)
     round3 = Round(deck2)
@@ -57,8 +57,8 @@ class TestRound(unittest.TestCase):
     round3.take_turn('Mars')
     round3.take_turn('North north west')
     self.assertEqual(round3.number_correct(), 3)
-    self.assertEqual(round3.correct_cat('Geography'), 1)
-    self.assertEqual(round3.correct_cat('STEM'), 2)
+    self.assertEqual(round3.correct_cat_count('Geography'), 1)
+    self.assertEqual(round3.correct_cat_count('STEM'), 2)
 
 
   
