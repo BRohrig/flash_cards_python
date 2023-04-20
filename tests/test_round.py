@@ -46,7 +46,6 @@ class TestRound(unittest.TestCase):
     deck2 = Deck(cards)
     round3 = Round(deck2)
     round3.take_turn('Juneau')
-    # import ipdb; ipdb.set_trace()
     self.assertEqual(round3.number_correct(), 1)
 
   def test_num_correct_cat_count(self):
