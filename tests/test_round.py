@@ -46,7 +46,27 @@ class TestRound(unittest.TestCase):
     deck2 = Deck(cards)
     round3 = Round(deck2)
     round3.take_turn('Juneau')
-    # import ipdb; ipdb.set_trace()
     self.assertEqual(round3.number_correct(), 1)
 
+  def test_num_correct_cat_count(self):
+    cards = [card_1, card_2, card_3]
+    deck2 = Deck(cards)
+    round3 = Round(deck2)
+    round3.take_turn('Juneau')
+    round3.take_turn('Mars')
+    round3.take_turn('North north west')
+    self.assertEqual(round3.number_correct(), 3)
+    self.assertEqual(round3.correct_cat_count('Geography'), 1)
+    self.assertEqual(round3.correct_cat_count('STEM'), 2)
+
+  def test_percent_correct(self):
+    cards = [card_1, card_2, card_3]
+    deck2 = Deck(cards)
+    round3 = Round(deck2)
+    round3.take_turn('Juneau')
+    self.assertEqual(round3.percent_correct(), 100.0)
+    round3.take_turn('the muffin man')
+    self.assertEqual(round3.percent_correct(), 50.0)
+    round3. take_turn('North north west')
+    self.assertEqual(round3.percent_correct(), 66.7)
   
