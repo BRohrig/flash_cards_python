@@ -67,6 +67,42 @@ class TestRound(unittest.TestCase):
     self.assertEqual(round3.percent_correct(), 100.0)
     round3.take_turn('the muffin man')
     self.assertEqual(round3.percent_correct(), 50.0)
-    round3. take_turn('North north west')
+    round3.take_turn('North north west')
     self.assertEqual(round3.percent_correct(), 66.7)
   
+  def test_turns_by_cat(self):
+    cards = [card_1, card_2, card_3]
+    deck2 = Deck(cards)
+    round3 = Round(deck2)
+    round3.take_turn('Juneau')
+    self.assertEqual(round3.turns_by_cat("Geography"), 1)
+    round3.take_turn('the muffin man')
+    self.assertEqual(round3.turns_by_cat('STEM'), 1)
+    self.assertEqual(round3.turns_by_cat("Geography"), 1)
+    round3.take_turn('West maybe')
+    self.assertEqual(round3.turns_by_cat('STEM'), 2)
+    self.assertEqual(round3.turns_by_cat("Geography"), 1)
+
+  def test_correct_by_cat(self):
+    cards = [card_1, card_2, card_3]
+    deck2 = Deck(cards)
+    round3 = Round(deck2)
+    round3.take_turn('Juneau')
+    self.assertEqual(round3.correct_by_cat('Geography'), 1)
+    round3.take_turn('the muffin man')
+    self.assertEqual(round3.correct_by_cat('STEM'), 0)
+    self.assertEqual(round3.correct_by_cat("Geography"), 1)
+    round3.take_turn('North north west')
+    self.assertEqual(round3.correct_by_cat('STEM'), 1)
+    self.assertEqual(round3.correct_by_cat("Geography"), 1)
+
+  def test_percent_by_cat(self):
+    cards = [card_1, card_2, card_3]
+    deck2 = Deck(cards)
+    round3 = Round(deck2)
+    round3.take_turn('Juneau')
+    round3.take_turn('the muffin man')
+    self.assertEqual(round3.percent_by_cat('STEM'), 0.0)
+    round3.take_turn('North north west')
+    self.assertEqual(round3.percent_by_cat('Geography'), 100.0)
+    self.assertEqual(round3.percent_by_cat('STEM'), 50.0)
