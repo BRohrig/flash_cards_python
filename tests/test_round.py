@@ -106,3 +106,14 @@ class TestRound(unittest.TestCase):
     round3.take_turn('North north west')
     self.assertEqual(round3.percent_by_cat('Geography'), 100.0)
     self.assertEqual(round3.percent_by_cat('STEM'), 50.0)
+
+  def test_present_cats(self):
+    cards = [card_1, card_2, card_3]
+    deck2 = Deck(cards)
+    round3 = Round(deck2)
+    round3.take_turn('Juneau')
+    self.assertEqual(round3.present_cats, ['Geography'])
+    round3.take_turn('the muffin man')
+    self.assertEqual(round3.present_cats, ['Geography', 'STEM'])
+    round3.take_turn('North north west')
+    self.assertEqual(round3.present_cats, ['Geography', 'STEM'])
